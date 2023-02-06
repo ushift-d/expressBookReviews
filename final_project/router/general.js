@@ -6,17 +6,17 @@ const public_users = express.Router();
 
 
 public_users.post("/register", (req,res) => {
-  let message = req.body
+  
   const {username, password} = req.body;
   
   if(!username || !password) {
-    return res.send(message);
+    return res.status(400).json({ message: "Invalid credentials" });
   }
   if(isValid(username)){
     return res.status(400).json({message: "User already exists"});
   }
   users.push({username, password});
-  return res.status(200).json({message: "User registered successfully"});
+    return res.status(200).json({message: "User registered successfully"});
   
 });
 
